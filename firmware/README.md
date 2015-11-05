@@ -3,9 +3,9 @@ Ansible role that works with the [iDRAC Ansible module](https://github.com/hbeat
 
 ## Tasks - tasks/main.yml
 
-```
-
-```
+* Make sure the iDRAC is ready
+* Installs new iDRAC firmware
+* 
 
 ## Variables - defaults/main.yml
 
