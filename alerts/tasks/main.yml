@@ -1,0 +1,21 @@
+---
+# file: roles/idrac-alerts/tasks/main.yml
+
+- local_action: 
+    module: idrac
+    username: "{{ lom_user }}"
+    password: "{{ lom_pass }}"
+    hostname: "{{ lom_hostname }}"
+    command: 'SyslogSettings'
+    servers: "{{ idrac_syslog_servers }}"
+  when: idrac_syslog_servers is defined
+  tags:
+    - idrac_syslog
+
+
+- name: Turn on syslog notifications for iDRAC events
+  local_action: idrac username={{lom_user}} password={{lom_pass}}
+                hostname={{lom_hostname}} command="SetEventFiltersByInstanceIDs"
+  when: idrac_syslog_servers is defined
+  tags:
+    - idrac_syslog
