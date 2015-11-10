@@ -2,6 +2,7 @@
 # file: roles/idrac-alerts/tasks/main.yml
 
 - local_action: 
+    name: "Set the Syslog Servers"
     module: idrac
     username: "{{ lom_user }}"
     password: "{{ lom_pass }}"
