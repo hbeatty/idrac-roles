@@ -1,22 +1,10 @@
 ---
 # file: roles/idrac/firmware/defaults/main.yml
 
-R730xd:
-  bios: firmware/730xd/bios/1.3.6.EXE
-  idrac: firmware/730xd/idrac/2.15.10.10.EXE
-  perc: firmware/730xd/perc/25.2.2-0004_A03.EXE
-  intelNicFirmware: firmware/730xd/intel-nic/16.5.0_A00.EXE
+share_user: idrac
+share_pass: idrac
+share_ip: host.example.com
+share_name: public
+share_type: cifs
+local_samba_path: /var/samba/firmware
 
-  percInstanceID: "DCIM:INSTALLED#301_C_RAID.Integrated.1-1"
-
-  # Intel 4P NIC 'Element Name' is Intel(R) Gigabit 4P X520/I350 rNDC
-  gigNicInstanceID1: "DCIM:INSTALLED#701__NIC.Integrated.1-3-1"
-  gigNicInstanceID2: "DCIM:INSTALLED#701__NIC.Integrated.1-4-1"
-
-  # Intel 10G NIC 'ElementName' is Intel(R) Ethernet 10G 4P X520/I350 rNDC
-  tenGigNicInstanceID1: "DCIM:INSTALLED#701__NIC.Integrated.1-1-1"
-  tenGigNicInstanceID2: "DCIM:INSTALLED#701__NIC.Integrated.1-2-1"
-
-target_BIOSVersionString: "1.3.6"
-target_LifecycleControllerVersion: "2.15.10.10"
-target_PercVersion: "25.2.2-0004"

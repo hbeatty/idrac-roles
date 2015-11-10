@@ -1,0 +1,42 @@
+---
+firmware:
+  PowerEdge_R730xd:
+    bios:
+      url: http://downloads.dell.com/FOLDER02868051M/1/BIOS_XR23Y_WN64_1.2.10.EXE
+      filename: BIOS_XR23Y_WN64_1.2.10.EXE
+      target_version: 1.2.10
+      search: none
+      minimum_version: none
+    idrac:
+      url: http://downloads.dell.com/FOLDER02881013M/1/iDRAC-with-Lifecycle-Controller_Firmware_FM1PC_WN64_2.10.10.10_A00.EXE
+      filename: iDRAC-with-Lifecycle-Controller_Firmware_FM1PC_WN64_2.10.10.10_A00.EXE
+      target_version: 2.10.10.10
+      search: none
+      minimum_version: none
+  PowerEdge_R720xd:
+    bios:
+      url: http://downloads.dell.com/FOLDER02868051M/1/BIOS_XR23Y_WN64_1.2.10.EXE
+      filename: BIOS_XR23Y_WN64_1.2.10.EXE
+      target_version: 1.2.10
+      search: none
+      minimum_version: none
+    idrac:
+      url: http://downloads.dell.com/FOLDER02881013M/1/iDRAC-with-Lifecycle-Controller_Firmware_FM1PC_WN64_2.10.10.10_A00.EXE
+      filename: iDRAC-with-Lifecycle-Controller_Firmware_FM1PC_WN64_2.10.10.10_A00.EXE
+      target_version: 2.10.10.10
+      search: none
+      minimum_version: none
+  PowerEdge_R620xd:
+    bios:
+      url: http://downloads.dell.com/FOLDER02797483M/1/BIOS_CNN4X_WN64_2.5.2.EXE
+      filename: BIOS_CNN4X_WN64_2.5.2.EXE
+      target_version: 2.5.2
+      search: none
+      minimum_version: none
+    os_collector:
+      url: http://downloads.dell.com/FOLDER02775623M/1/Diagnostics_Application_5W2KP_WN64_OSC_1.1_X10-00.EXE
+      filename: Diagnostics_Application_5W2KP_WN64_OSC_1.1_X10-00.EXE
+      target_version: 1.1
+      search: none
+      minimum_version: none
+

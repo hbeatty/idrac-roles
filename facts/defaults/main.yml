@@ -4,4 +4,9 @@
 lom_user: root
 lom_pass: pass
 drac_default_pass: calvin
+share_user: idrac
+share_pass: idrac
+share_ip: 10.10.10.10
+share_name: public
+share_type: cifs
 

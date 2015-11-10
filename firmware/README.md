@@ -45,3 +45,9 @@ lom_pass: pass
 * wsmancli and libwsman1 from [OpenWSMAN](https://openwsman.github.io/)
   * I would like to get rid of this dependency (for various reasons) by enhancing the Dell WSMan Client API Python with a new transport.
 
+## Notes
+
+iDRAC stuck
+http://www.dell.com/support/manuals/us/en/19/Topic/idrac8-with-lc-v2.05.05.05/LC_2.05.05.05_UG-v1/en-us/GUID-8F76747E-86F2-4242-BE3D-8BB5A88A7C0C
+
+
