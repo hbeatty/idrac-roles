@@ -1,0 +1,13 @@
+---
+# file roles/idrac/local/defaults/main.yml
+
+#share_user: idrac
+#share_pass: idrac
+#share_ip: 10.10.10.10
+#share_name: public
+#share_type: cifs
+#local_samba_path: /var/samba
+#local_firmware_path: "{{ local_samba_path }}/firmware"
+
+# From the perspective of the iDRAC
+#remote_share_path: firmware
