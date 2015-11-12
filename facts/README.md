@@ -27,22 +27,26 @@ Ansible role that works with the [iDRAC Ansible module](https://github.com/hbeat
 ## Example Playbook
 
 ```
-
 - hosts: localhost
   sudo: yes
   tasks:
   - name: Install wsmancli
     yum: name=wsmancli state=present
 
+- hosts: localhost
+  sudo: yes
+
+  roles:
+  - { role: idrac/lcoal, tags: "idrac-local" }
 
 - hosts: idracs
   gather_facts: False
   sudo: yes
 
   roles:
-  - { role: idrac/facts, tags: [ "idrac-facts", "idrac-firmware", "idrac-storage", "idrac-iso" ] }
-  - { role: idrac-alerts, tags: "idrac-alerts" }
-  - { role: idrac-firmware, tags: "idrac-firmware" }
-  - { role: idrac-storage, tags: "idrac-storage" }
-  - { role: idrac-iso, tags: "idrac-iso" }
+  - { role: idrac/facts, tags: [ "idrac-facts", "idrac-firmware", "idrac-storage", "idrac-os-install" ] }
+  - { role: idrac/alerts, tags: "idrac-alerts" }
+  - { role: idrac/firmware, tags: "idrac-firmware" }
+  - { role: idrac/storage, tags: "idrac-storage" }
+  - { role: idrac/os-install, tags: "idrac-os-install" }
 ```

@@ -15,7 +15,6 @@ Ansible role that works with the [iDRAC Ansible module](https://github.com/hbeat
   tags:
     - idrac_syslog
 
-
 - name: Turn on syslog notifications for iDRAC events
   local_action: idrac username={{lom_user}} password={{lom_pass}}
                 hostname={{lom_hostname}} command="SetEventFiltersByInstanceIDs"
@@ -30,23 +29,19 @@ Ansible role that works with the [iDRAC Ansible module](https://github.com/hbeat
 lom_user: root
 lom_pass: pass
 
-# limit of 3
+# iDRAC limitation of 3
 idrac_syslog_servers:
     - 10.10.10.10
     - 10.10.10.11
     - 10.10.10.12
 
-
 # only set this if you want to change from the default destination of 514
-#idrac_syslog_port: 514
+idrac_syslog_port: 514
 
-# Enable remote syslog for the iDRAC
-#idrac_syslog_enabled: true
+# Disable remote syslog for the iDRAC (defaults to true). Only needed if you
+# want to turn it off
+idrac_syslog_enabled: false
 ```
-
-## Handlers - handlers/main.yml
-
-* Get System Inventory
 
 ## Dependencies
 
@@ -58,22 +53,22 @@ idrac_syslog_servers:
 ## Example Playbook
 
 ```
-
 - hosts: localhost
   sudo: yes
   tasks:
   - name: Install wsmancli
     yum: name=wsmancli state=present
 
-
 - hosts: idracs
   gather_facts: False
   sudo: yes
 
   roles:
-    - idrac-facts
     - idrac-alerts
-    - idrac-firmware
-    - idrac-storage
-    - idrac-iso
 ```
+
+## Notes
+
+Currently this sets the syslog servers, enables syslog to be sent, and then turns on all of the Event Filters for "Remote System Log".  
+
+The eventual goal will be that you can pick and choose which Notifications to turn on.
