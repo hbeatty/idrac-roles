@@ -1,5 +1,7 @@
-# idrac-facts
+# idrac/facts
 Ansible role that works with the [iDRAC Ansible module](https://github.com/hbeatty/iDRAC-Ansible-module).
+
+Gets some system information and will reset the root password.
 
 ## Tasks - tasks/main.yml
 
@@ -9,9 +11,11 @@ Ansible role that works with the [iDRAC Ansible module](https://github.com/hbeat
 
 ## Variables - defaults/main.yml
 
-* lom_user: root
-* lom_pass: pass
-* drac_default_pass: calvin
+```
+lom_user: root
+lom_pass: pass
+drac_default_pass: calvin
+```
 
 ## Handlers - handlers/main.yml
 

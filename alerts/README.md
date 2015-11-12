@@ -1,4 +1,4 @@
-# idrac-alerts
+# idrac/alerts
 Ansible role that works with the [iDRAC Ansible module](https://github.com/hbeatty/iDRAC-Ansible-module). Sets the values for the alerting in the iDRAC.
 
 ## Tasks - tasks/main.yml
@@ -64,7 +64,7 @@ idrac_syslog_enabled: false
   sudo: yes
 
   roles:
-    - idrac-alerts
+    - idrac/alerts
 ```
 
 ## Notes

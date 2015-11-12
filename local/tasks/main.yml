@@ -7,10 +7,6 @@
 - name: Create firmware dir
   file: path={{local_firmware_path}} state=directory
 
-- name: Copy XML file to /var/samba
-  copy: src=files/idrac_xml/ dest=/var/samba/ directory_mode=yes mode=644
-        #owner=ansible group=ansible mode=644
-
 - name: Download firmware from Dell
   get_url: url={{ item.value.url }}
     dest={{local_firmware_path}}/{{ item.value.url | basename }}

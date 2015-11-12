@@ -1,12 +1,12 @@
-# idrac/firmware
+# idrac/storage
 Ansible role that works with the [iDRAC Ansible module](https://github.com/hbeatty/iDRAC-Ansible-module).
 
-Installs new firmware. By 'install' I mean that it will go up or down in version. Mostly it assumes you are upgrading but, you can go down by setting the 'minimum_version' to 'none' in the firmware.yml.
+Coming Soon.
 
 ## Tasks - tasks/main.yml
 
-* Make sure the iDRAC is ready
-* Installs new iDRAC firmware
+```
+```
 
 ## Variables - defaults/main.yml
 
@@ -29,11 +29,7 @@ lom_pass: pass
   sudo: yes
 
   roles:
-  - { role: idrac/facts, tags: [ "idrac-facts", "idrac-alerts", "idrac-firmware", "idrac-storage", "idrac-os-install" ] }
-  - { role: idrac/alerts, tags: "idrac-alerts" }
-  - { role: idrac/firmware, tags: "idrac-firmware" }
-  - { role: idrac/storage, tags: "idrac-storage" }
-  - { role: idrac/os-install, tags: "idrac-os-install" }
+    - idrac/storage
 ```
 
 ## Dependencies
@@ -44,8 +40,4 @@ lom_pass: pass
   * I would like to get rid of this dependency (for various reasons) by enhancing the Dell WSMan Client API Python with a new transport.
 
 ## Notes
-
-iDRAC stuck? Try the link below.
-http://www.dell.com/support/manuals/us/en/19/Topic/idrac8-with-lc-v2.05.05.05/LC_2.05.05.05_UG-v1/en-us/GUID-8F76747E-86F2-4242-BE3D-8BB5A88A7C0C
-
 

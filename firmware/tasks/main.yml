@@ -17,11 +17,11 @@
   local_action: idrac username={{lom_user}} password={{lom_pass}}
                 hostname={{lom_hostname}} command="CheckReadyState"
   
-#- debug: var=Model
+- debug: var=Model
 
-#- debug: var=LifecycleControllerVersion
+- debug: var=LifecycleControllerVersion
 
-#- debug: var=firmware[Model]['idrac']['target_version']
+- debug: var=firmware[Model]['idrac']['target_version']
 
 # This one has to be run seperately because it causes an automatic reset of the 
 # iDRAC
@@ -48,13 +48,6 @@
 # All firmware limited to a single model type
 #- debug: msg={{ item.key }}
 #  with_dict: firmware[Model]
-
-# removing for now - HB TODO
-#- include: perc.yml
-#  when: software_identity[{{percInstanceID}}]['VersionString'] != target_PercVersion
-
-# TODO fixme
-#- include: firmware.yml
 
 # Disabled BIOS until idrac.yml is checking status properly
 #- include: bios.yml
