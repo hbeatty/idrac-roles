@@ -1,0 +1,31 @@
+---
+# file: roles/idrac/firmware/tasks/debug.yml
+
+- debug: var=Model
+
+- debug: var=LifecycleControllerVersion
+
+- debug: var=firmware[Model]['idrac']['target_version']
+
+# This pulls the idrac firmware but, has all models
+- debug: msg={{ item.key }}
+  when: item.key == 'idrac'
+  with_recursive:
+   - { name: dict, args: firmware }
+   - { name: dict, args: "{{item.value}}" }
+
+# Limit to just the idrac
+- debug: var=item
+  when: item.key == 'idrac'
+  with_dict: firmware[Model]
+
+# Limit to a single model type
+- debug: msg={{ item.value }}
+  when: Model == item.key
+  with_recursive:
+    - { name: dict, args: firmware }
+
+# All firmware limited to a single model type
+- debug: msg={{ item.key }}
+  with_dict: firmware[Model]
+

@@ -16,40 +16,15 @@
 - name: Make sure iDrac is ready
   local_action: idrac username={{lom_user}} password={{lom_pass}}
                 hostname={{lom_hostname}} command="CheckReadyState"
+
+#- include: debug.yml
   
-- debug: var=Model
-
-- debug: var=LifecycleControllerVersion
-
-- debug: var=firmware[Model]['idrac']['target_version']
-
 # This one has to be run seperately because it causes an automatic reset of the 
 # iDRAC
-- include: idracFirmwareInstall.yml
+#- include: idracFirmwareInstall.yml
 
-# This pulls the idrac firmware but, has all models
-#- debug: msg={{ item.key }}
-#  when: item.key == 'idrac'
-#  with_recursive:
-#   - { name: dict, args: firmware }
-#   - { name: dict, args: "{{item.value}}" }
+# Run seperately because it reboots the server
+- include: biosInstall.yml
 
-# Limit to just the idrac
-#- debug: var=item
-#  when: item.key == 'idrac'
-#  with_dict: firmware[Model]
-
-# Limit to a single model type
-#- debug: msg={{ item.value }}
-#  when: Model == item.key
-#  with_recursive:
-#    - { name: dict, args: firmware }
-
-# All firmware limited to a single model type
-#- debug: msg={{ item.key }}
-#  with_dict: firmware[Model]
-
-# Disabled BIOS until idrac.yml is checking status properly
-#- include: bios.yml
-#  when: BIOSVersionString != target_BIOSVersionString
-
+# Install the other firmware
+#- include: firmwareInstall.yml

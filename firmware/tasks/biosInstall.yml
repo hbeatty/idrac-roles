@@ -1,0 +1,13 @@
+---
+# file: roles/idrac/firmware/tasks/biosInstall.yml
+
+- name: Install BIOS
+  local_action:
+    module: idrac
+    username: "{{ lom_user }}"
+    password: "{{ lom_pass }}"
+    hostname: "{{ lom_hostname }}"
+    command: "InstallBIOS"
+    debug: True
+    firmware:
+      "{{firmware[Model].bios}}"
