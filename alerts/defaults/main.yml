@@ -13,5 +13,3 @@ idrac_syslog_servers:
 # only set this if you want to change from the default destination of 514
 idrac_syslog_port: 514
 
-# Enable remote syslog for the iDRAC defaults to true
-#idrac_syslog_enabled: true
