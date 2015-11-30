@@ -2,8 +2,8 @@
 # file : roles/idrac/firmware/tasks/idracFirmwareInstall.yml
 
 # TODO add a log message
-- name: Life Cycle Log message for iDrac Firmware Upgrade Start
-  local_action: racadm username={{ lom_user }} password={{ lom_pass }} host={{ lom_hostname }} cmd="lclog worknote add -m \"Starting iDrac Firmware upgrade\""
+#- name: Life Cycle Log message for iDrac Firmware Upgrade Start
+#  local_action: racadm username={{ lom_user }} password={{ lom_pass }} host={{ lom_hostname }} cmd="lclog worknote add -m \"Starting iDrac Firmware upgrade\""
 
 #- debug: var=firmware[Model].idrac
 
@@ -15,7 +15,7 @@
     hostname: "{{lom_hostname}}"
     command: "InstallIdracFirmware"
     debug: "True"
-    firmware_info:
+    firmware:
       "{{firmware[Model].idrac}}"
 
 - name: Check iDRAC status after upgrade
