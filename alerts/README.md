@@ -1,4 +1,5 @@
 # idrac/alerts
+
 Ansible role that works with the [iDRAC Ansible module](https://github.com/hbeatty/iDRAC-Ansible-module). Sets the values for the alerting in the iDRAC.
 
 ## Tasks - tasks/main.yml
@@ -35,12 +36,8 @@ idrac_syslog_servers:
     - 10.10.10.11
     - 10.10.10.12
 
-# only set this if you want to change from the default destination of 514
+# Sets the sylog port to UDP 514 (iDRAC does not support TCP for syslog)
 idrac_syslog_port: 514
-
-# Disable remote syslog for the iDRAC (defaults to true). Only needed if you
-# want to turn it off
-idrac_syslog_enabled: false
 ```
 
 ## Dependencies
@@ -64,7 +61,11 @@ idrac_syslog_enabled: false
   sudo: yes
 
   roles:
-    - idrac/alerts
+  - { role: idrac/facts, tags: [ "idrac-facts", "idrac-firmware", "idrac-storage", "idrac-os-install", "idrac-alerts" ] }
+  - { role: idrac/alerts, tags: "idrac-alerts" }
+  - { role: idrac/firmware, tags: "idrac-firmware" }
+  - { role: idrac/storage, tags: "idrac-storage" }
+  - { role: idrac/os-install, tags: "idrac-os-install" }
 ```
 
 ## Notes

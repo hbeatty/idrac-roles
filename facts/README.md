@@ -48,9 +48,9 @@ drac_default_pass: calvin
   sudo: yes
 
   roles:
-  - { role: idrac/facts, tags: [ "idrac-facts", "idrac-firmware", "idrac-storage", "idrac-os-install" ] }
+  - { role: idrac/facts, tags: [ "idrac-facts", "idrac-firmware", "idrac-storage", "idrac-os-install", "idrac-alerts" ] }
   - { role: idrac/alerts, tags: "idrac-alerts" }
   - { role: idrac/firmware, tags: "idrac-firmware" }
   - { role: idrac/storage, tags: "idrac-storage" }
   - { role: idrac/os-install, tags: "idrac-os-install" }
-```
+

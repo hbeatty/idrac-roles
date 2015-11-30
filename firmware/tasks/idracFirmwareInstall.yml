@@ -15,7 +15,7 @@
     hostname: "{{lom_hostname}}"
     command: "InstallIdracFirmware"
     debug: "True"
-    firmware_info:
+    firmware:
       "{{firmware[Model].idrac}}"
 
 - name: Check iDRAC status after upgrade
