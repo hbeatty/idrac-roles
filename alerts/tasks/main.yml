@@ -1,5 +1,5 @@
 ---
-# file: roles/idrac-alerts/tasks/main.yml
+# file: roles/idrac/alerts/tasks/main.yml
 
 - name: "Set the Syslog Servers"
   local_action: 
