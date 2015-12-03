@@ -21,10 +21,10 @@
   
 # This one has to be run seperately because it causes an automatic reset of the 
 # iDRAC
-#- include: idracFirmwareInstall.yml
+- include: idracFirmwareInstall.yml
 
 # Run seperately because it reboots the server
 - include: biosInstall.yml
 
 # Install the other firmware
-#- include: firmwareInstall.yml
+- include: firmwareInstall.yml

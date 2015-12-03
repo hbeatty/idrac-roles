@@ -4,10 +4,13 @@
 - name: Install Firmware
   local_action:
     module: idrac
-    username: {{ lom_user }}
-    password: {{ lom_pass }}
-    hostname: {{ lom_hostname }}
+    username: "{{ lom_user }}"
+    password: "{{ lom_pass }}"
+    hostname: "{{ lom_hostname }}"
     command: "InstallFirmware"
     firmware: 
-      "{{ firmware }}"
+      "{{ firmware[SystemGeneration] }}"
+  register: result
 
+# Give a pretty output of how the install went
+- debug: var=result.result

@@ -8,6 +8,5 @@
     password: "{{ lom_pass }}"
     hostname: "{{ lom_hostname }}"
     command: "InstallBIOS"
-    debug: True
     firmware:
-      "{{firmware[Model].bios}}"
+      "{{firmware[SystemGeneration].bios}}"

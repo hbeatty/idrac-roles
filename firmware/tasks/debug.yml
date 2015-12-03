@@ -3,9 +3,11 @@
 
 - debug: var=Model
 
+- debug: var=SystemGeneration
+
 - debug: var=LifecycleControllerVersion
 
-- debug: var=firmware[Model]['idrac']['target_version']
+- debug: var=firmware[SystemGeneration]['idrac']['target_version']
 
 # This pulls the idrac firmware but, has all models
 - debug: msg={{ item.key }}
@@ -17,15 +19,15 @@
 # Limit to just the idrac
 - debug: var=item
   when: item.key == 'idrac'
-  with_dict: firmware[Model]
+  with_dict: firmware[SystemGeneration]
 
-# Limit to a single model type
+# Limit to a single SystemGeneration
 - debug: msg={{ item.value }}
-  when: Model == item.key
+  when: SystemGeneration == item.key
   with_recursive:
     - { name: dict, args: firmware }
 
-# All firmware limited to a single model type
+# All firmware limited to a single SystemGeneration
 - debug: msg={{ item.key }}
-  with_dict: firmware[Model]
+  with_dict: firmware[SystemGeneration]
 
