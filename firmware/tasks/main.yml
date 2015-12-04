@@ -27,4 +27,4 @@
 - include: biosInstall.yml
 
 # Install the other firmware
-- include: firmwareInstall.yml
+- include: firmwareUpgrade.yml

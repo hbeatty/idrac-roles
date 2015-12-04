@@ -1,13 +1,13 @@
 ---
-# file: roles/idrac/firmware/tasks/firmwareInstall.yml
+# file: roles/idrac/firmware/tasks/firmwareUpgrade.yml
 
-- name: Install Firmware
+- name: Upgrade Firmware
   local_action:
     module: idrac
     username: "{{ lom_user }}"
     password: "{{ lom_pass }}"
     hostname: "{{ lom_hostname }}"
-    command: "InstallFirmware"
+    name: "UpgradeFirmware"
     firmware: 
       "{{ firmware[SystemGeneration] }}"
   register: result
