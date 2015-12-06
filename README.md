@@ -11,7 +11,9 @@ Roles for the [iDRAC Ansible Module](https://github.com/hbeatty/iDRAC-Ansible-mo
 
 ## Setup
 
-* Copy firmware.yml to your group_vars/all folder
+1. [Generate a firmware.yml](https://github.com/hbeatty/iDRAC-Ansible-module/tree/master/docs/GenerateFirmwareVars.md)
+  * This will create a <hostname>.firmware.yml for each host. You can then combine them into one and place it in your group_vars/all folder.
+2. All of these roles assume you have lom_hostname set for each of the hosts you want to manage.
 
 All of these roles use the same variables. I recommend putting them in your inventory file or a group_vars file. The variables that are needed for a specific role have been put in defaults/main.yml and then commented out.
 
@@ -34,16 +36,18 @@ local_firmware_path: "{{ local_samba_path }}/firmware"
 remote_share_path: firmware
 
 idrac_syslog_servers:
-    - 10.10.10.10
-    - 10.10.10.11
-    - 10.10.10.12
+  - 10.10.10.10
+  - 10.10.10.11
+  - 10.10.10.12
 
-# only set this if you want to change from the default destination of 514
+# Set the destination (from the perspective of the iDRAC) UDP port.
+# The iDRAC is set to 514 by default. However, if someone has manually changed
+# it and this is not set the task will not change it back to UDP 514.
 idrac_syslog_port: 514
 
 # Disable remote syslog for the iDRAC (defaults to true). Only needed if you
 # want to turn it off
-idrac_syslog_enabled: false
+#idrac_syslog_enabled: false
 ```
 
 ## Dependencies

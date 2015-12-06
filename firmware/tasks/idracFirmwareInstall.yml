@@ -6,7 +6,7 @@
 #  local_action: idrac username={{ lom_user }} password={{ lom_pass }} host={{ lom_hostname }}
 #                name=LogMessage message="Starting iDRAC firmware install"
 
-#- debug: var=firmware[Model].idrac
+#- debug: var=firmware[SystemGeneration].idrac
 
 - name: Install iDRAC firmware
   local_action:
@@ -14,7 +14,7 @@
     username: "{{lom_user}}"
     password: "{{lom_pass}}"
     hostname: "{{lom_hostname}}"
-    command: "InstallIdracFirmware"
+    name: "InstallIdracFirmware"
     firmware:
       "{{firmware[SystemGeneration].idrac}}"
 

@@ -8,6 +8,7 @@
     password: "{{ lom_pass }}"
     hostname: "{{ lom_hostname }}"
     name: "UpgradeFirmware"
+    reboot_type: 1
     firmware: 
       "{{ firmware[SystemGeneration] }}"
   register: result

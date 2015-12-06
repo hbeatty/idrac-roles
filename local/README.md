@@ -6,6 +6,8 @@ Ansible role that works with the [iDRAC Ansible module](https://github.com/hbeat
 
 Could probably be used for installing from NFS share but, I haven't tested. Would be interested in any updates.
 
+This should give you an idea of how you could set things up for installing the firmware.
+
 ## Setup
 
 * Create a lookup_plugins folder in your main Ansible tree
@@ -20,9 +22,11 @@ Could probably be used for installing from NFS share but, I haven't tested. Woul
 - name: Create firmware dir
   file: path={{local_firmware_path}} state=directory
 
+# this uses an extra var in the firmware.yml file called 'download' see GenerateFirmwareVars for creating firmware.yml
 - name: Download firmware from Dell
-  get_url: url={{ item.value.url }}
-    dest={{local_firmware_path}}/{{ item.value.url | basename }}
+  get_url: url={{ item.value.download }}
+    dest={{local_firmware_path}}/{{ item.value.download | basename }}
+  when: item.value.download is defined
   with_recursive:
    - { name: dict, args: firmware }
    - { name: dict, args: "{{item.value}}" }

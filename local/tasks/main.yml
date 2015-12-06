@@ -8,8 +8,9 @@
   file: path={{local_firmware_path}} state=directory
 
 - name: Download firmware from Dell
-  get_url: url={{ item.value.url }}
-    dest={{local_firmware_path}}/{{ item.value.url | basename }}
+  get_url: url={{ item.value.download }}
+    dest={{local_firmware_path}}/{{ item.value.download | basename }}
+  when: item.value.download is defined
   with_recursive:
    - { name: dict, args: firmware }
    - { name: dict, args: "{{item.value}}" }

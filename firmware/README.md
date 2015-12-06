@@ -1,12 +1,93 @@
 # idrac/firmware
+
 Ansible role that works with the [iDRAC Ansible module](https://github.com/hbeatty/iDRAC-Ansible-module).
 
-Installs new firmware. By 'install' I mean that it will go up or down in version. Mostly it assumes you are upgrading but, you can go down by setting the 'minimum_version' to 'none' in the firmware.yml.
+Upgrades firmware. 
 
-## Tasks - tasks/main.yml
+Firmware upgrade order:  
 
-* Make sure the iDRAC is ready
-* Installs new iDRAC firmware
+1. iDRAC
+3. BIOS
+4. Diagnostics
+5. OS Driver Pack
+6. RAID
+7. NIC
+8. PSU
+9. CPLD
+10. Other updates
+
+See [GenerateFirmwareVars](https://github.com/hbeatty/iDRAC-Ansible-module/tree/master/docs/GenerateFirmwareVars.md) for a head start on your group_vars/all/firmware.yml file.
+
+## Tasks
+
+### tasks/main.yml
+
+```
+- name: Make sure iDrac is ready
+  local_action: idrac username={{lom_user}} password={{lom_pass}}
+                hostname={{lom_hostname}} name="CheckReadyState"
+
+# This one has to be run seperately because it causes an automatic reset of the 
+# iDRAC
+- include: idracFirmwareInstall.yml
+
+# Run seperately because of the upgrade order
+- include: biosInstall.yml
+
+# Install the other firmware
+- include: firmwareUpgrade.yml
+```
+
+### tasks/idracFirmwareInstall.yml
+
+```
+- name: Install iDRAC firmware
+  local_action:
+    module: idrac
+    username: "{{lom_user}}"
+    password: "{{lom_pass}}"
+    hostname: "{{lom_hostname}}"
+    name: "InstallIdracFirmware"
+    firmware:
+      "{{firmware[SystemGeneration].idrac}}"
+
+- name: Check iDRAC status after upgrade
+  local_action: idrac username={{lom_user}} password={{lom_pass}}
+                hostname={{lom_hostname}} command="CheckReadyState"
+```
+
+### tasks/biosInstall.yml
+
+```
+- name: Install BIOS
+  local_action:
+    module: idrac
+    username: "{{ lom_user }}"
+    password: "{{ lom_pass }}"
+    hostname: "{{ lom_hostname }}"
+    name: "InstallBIOS"
+    firmware:
+      "{{firmware[SystemGeneration].bios}}"
+```
+
+### tasks/firmwareUpgrade.yml
+
+```
+- name: Upgrade Firmware
+  local_action:
+    module: idrac
+    username: "{{ lom_user }}"
+    password: "{{ lom_pass }}"
+    hostname: "{{ lom_hostname }}"
+    name: "UpgradeFirmware"
+    reboot_type: 1
+    firmware: 
+      "{{ firmware[SystemGeneration] }}"
+  register: result
+
+# Give a pretty output of how the install went
+- debug: var=result.result
+```
 
 ## Variables - defaults/main.yml
 

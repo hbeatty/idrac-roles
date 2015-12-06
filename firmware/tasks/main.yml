@@ -1,18 +1,6 @@
 ---
 # file: roles/idrac/firmware/tasks/main.yml
 
-# Firmware upgrade order according to Dell
-# 1. iDRAC
-# 2. Lifecycle Controller
-# 3. BIOS
-# 4. Diagnostics
-# 5. OS Driver Pack
-# 6. RAID
-# 7. NIC
-# 8. PSU
-# 9. CPLD
-# 10. Other updates
-
 - name: Make sure iDrac is ready
   local_action: idrac username={{lom_user}} password={{lom_pass}}
                 hostname={{lom_hostname}} command="CheckReadyState"
