@@ -7,4 +7,4 @@ share_ip: host.example.com
 share_name: public
 share_type: cifs
 local_samba_path: /var/samba/firmware
-
+reboot_type: 2

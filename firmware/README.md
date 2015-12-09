@@ -93,7 +93,14 @@ See [GenerateFirmwareVars](https://github.com/hbeatty/iDRAC-Ansible-module/tree/
 
 ```
 lom_user: root
-lom_pass: pass
+lom_pass: calvin
+share_user: idrac
+share_pass: idrac
+share_ip: host.example.com
+share_name: public
+share_type: cifs
+local_samba_path: /var/samba/firmware
+reboot_type: 2
 ```
 
 ## Example Playbook
