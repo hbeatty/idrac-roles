@@ -12,7 +12,7 @@
     port: "{{ idrac_syslog_port }}"
   when: idrac_syslog_servers is defined
   tags:
-    - idrac_syslog
+    - idrac-syslog
 
 
 - name: Turn on syslog notifications for iDRAC events
@@ -20,4 +20,4 @@
                 hostname={{lom_hostname}} command="SetEventFiltersByInstanceIDs"
   when: idrac_syslog_servers is defined
   tags:
-    - idrac_syslog
+    - idrac-syslog
